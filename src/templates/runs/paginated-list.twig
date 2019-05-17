@@ -71,10 +71,10 @@
                 [filter]
               </a>
             </td>
-            <td class="right">{{ result.get('main()', 'wt') |as_time }}</td>
-            <td class="right">{{ result.get('main()', 'cpu') |as_time }}</td>
-            <td class="right">{{ result.get('main()', 'mu') |as_bytes }}</td>
-            <td class="right">{{ result.get('main()', 'pmu') |as_bytes }}</td>
+            <td class="right" title="{{ result.get('main()', 'wt') |as_title_s }}">{{ result.get('main()', 'wt') |as_ms }}</td>
+            <td class="right" title="{{ result.get('main()', 'cpu') |as_title_s }}">{{ result.get('main()', 'cpu') |as_ms }}</td>
+            <td class="right" title="{{ result.get('main()', 'mu')|as_title_kb }}">{{ result.get('main()', 'mu') |as_mb }}</td>
+            <td class="right" title="{{ result.get('main()', 'pmu') |as_title_kb }}">{{ result.get('main()', 'pmu') |as_mb }}</td>
             <td>
                 <a href="{{ url('run.delete.form', {'id': result.id|trim }) }}">
                     <i class="icon-trash"></i>

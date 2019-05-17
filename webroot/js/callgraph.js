@@ -146,12 +146,15 @@ Xhgui.callgraph = function(container, data, options) {
         },
         formatter: function (d, i) {
             var data = g.node(d).data;
-            var units = 'µs';
             if (data.metric.indexOf('mu') !== -1) {
-              units = 'bytes';
+              var units = 'KB';
+              var value = Xhgui.formatNumber(data.value / 1024);
+            }else{
+                var units = 'ms';
+                var value = Xhgui.formatNumber(data.value / 1000);
             }
             var ratio = Xhgui.formatNumber(data.ratio);
-            var value = Xhgui.formatNumber(data.value);
+            //var value = Xhgui.formatNumber(data.value);
             var metric = Xhgui.metricName(data.metric);
             var urlName = '&symbol=' + encodeURIComponent(d);
 
@@ -159,9 +162,9 @@ Xhgui.callgraph = function(container, data, options) {
                 '<strong>' + metric + ':</strong> ' + ratio + '% ' +
                 ' (' + value + ' <span class="units">' + units + '</span>) ' +
                 '<br />' +
-                '<strong>Call count:</strong> ' + data.callCount +
+                '<strong>调用次数:</strong> ' + data.callCount +
                 '<br />' +
-                ' <a href="' + options.baseUrl + urlName + '">View symbol</a> <br />';
+                ' <a href="' + options.baseUrl + urlName + '">查看详情</a> <br />';
             return label;
         }
     });

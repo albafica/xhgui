@@ -19,15 +19,36 @@
                 </a>
                 <a class="brand" href="{{ url('home') }}">XHG</a>
                 <div class="nav-collapse collapse">
-                    <ul class="nav">
-                        <li><a href="{{ url('home') }}">Recent</a></li>
-                        <li><a href="{{ url('home', {'sort': 'wt'}) }}">Longest wall time</a></li>
-                        <li><a href="{{ url('home', {'sort': 'cpu'}) }}">Most CPU</a></li>
-                        <li><a href="{{ url('home', {'sort': 'mu'}) }}">Most memory</a></li>
-                        <li><a href="{{ url('custom.view') }}">Custom View</a></li>
-                        <li><a href="{{ url('watch.list') }}">Watch Functions</a></li>
-                        <li><a href="{{ url('waterfall.list') }}">Waterfall</a></li>
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{ url('home') }}">最近运行</a></li>
+                        <li><a href="{{ url('home', {'sort': 'wt'}) }}">最长耗时</a></li>
+                        <li><a href="{{ url('home', {'sort': 'cpu'}) }}">最长CPU耗时</a></li>
+                        <li><a href="{{ url('home', {'sort': 'mu'}) }}">最多内存消耗</a></li>
+                        <li><a href="{{ url('custom.view') }}">自定义查询</a></li>
+                        <li><a href="{{ url('watch.list') }}">函数监控</a></li>
+                        <li><a href="{{ url('waterfall.list') }}">瀑布图</a></li>
                     </ul>
+                    <!-- Single button -->
+                    {# <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            时间单位 <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">微秒 - µs (默认值)</a></li>
+                            <li><a href="#">毫秒 - ms</a></li>
+                            <li><a href="{{ app.request.getRequestUri() }}">秒 - s</a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            内存单位 <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">字节 - Bytes (默认值)</a></li>
+                            <li><a href="#">千字节 - KB</a></li>
+                            <li><a href="#">兆 - MB</a></li>
+                        </ul>
+                    </div> #}
                 </div><!--/.nav-collapse -->
             </div>
         </div>
@@ -45,8 +66,8 @@
         <hr>
 
         <footer class="row-fluid footer-text">
-            <span class="span4">© Paul Reinheimer &amp; Mark Story 2012</span>
-            <span class="span4">1,000,000 µs = 1 second</span>
+            <span class="span4">Â© Paul Reinheimer &amp; Mark Story 2012</span>
+            <span class="span4">1,000,000 Âµs = 1 second</span>
             <span class="span4">1,048,576 bytes = 1 MB</span>
         </footer>
     </div>

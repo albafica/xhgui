@@ -51,7 +51,20 @@ function runProcess($cmd, $input = null) {
 /**
  * Composer setup.
  */
-if (!file_exists(__DIR__ . '/composer.phar')) {
+$composerPaths = [
+    '/usr/local/bin/composer',
+    '/usr/local/bin/composer-phar',
+];
+$composer = '';
+foreach($composerPaths as $composerPath){
+    if(file_exists($composerPath)){
+        $composer = $composerPath;
+        break;
+    }
+}
+$composer = !empty($composer) ? $composer : (__DIR__ . '/composer.phar');
+
+if (!file_exists($composer)) {
     out("Downloading composer.");
     $cmd = "php -r \"eval('?>'.file_get_contents('https://getcomposer.org/installer'));\"";
     $output = runProcess($cmd);
@@ -60,7 +73,7 @@ if (!file_exists(__DIR__ . '/composer.phar')) {
     out("Composer already installed.");
 }
 
-if (!file_exists(__DIR__ . '/composer.phar')) {
+if (!file_exists($composer)) {
     out('ERROR - No composer found');
     out('download failed, possible reasons:');
     out(' - you\'re behind a proxy.');
@@ -72,7 +85,7 @@ if (!file_exists(__DIR__ . '/composer.phar')) {
 }
 
 out("Installing dependencies.");
-$cmd = 'php ' . __DIR__ . '/composer.phar install --prefer-dist';
+$cmd = 'php ' . $composer . ' install --prefer-dist';
 $output = runProcess($cmd);
 out($output);
 

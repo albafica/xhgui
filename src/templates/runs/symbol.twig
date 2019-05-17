@@ -7,25 +7,35 @@
 
 {% block content %}
 <div class="row-fluid">
-    <a class="back-link" href="{{ url('run.view', {'id': id}) }}">&laquo; Back to run</a>
-    <h1>Function Details</h1>
+    <a class="back-link" href="{{ url('run.view', {'id': id}) }}">&laquo; 返回</a>
+    <h1>函数详情</h1>
     <h3 class="function-name">{{ symbol }}</h3>
 </div>
+
+<div class="row-fluid">
+    <div class="alert alert-info alert-block">
+        <dt>独占耗时</dt><dd>函数或方法自身执行消耗的时间，不包含子函数</dd>
+        <dt>独占内存</dt><dd>函数或方法自身执行消耗的内存，不包含子函数</dd>
+        <dt>总耗时</dt><dd>函数或方法完整执行消耗的时间，包含子函数</dd>
+        <dt>总内存</dt><dd>函数或方法完整执行消耗的内存，包含子函数</dd>
+    </div>
+</div>
+
 <div class="row-fluid">
     <h3>Current function</h3>
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>Function</th>
-                <th>Call Count</th>
-                <th>Self Wall Time</th>
-                <th>Self CPU</th>
-                <th>Self Memory Usage</th>
-                <th>Self Peak Memory Usage</th>
-                <th>Inclusive Wall Time</th>
-                <th>Inclusive CPU</th>
-                <th>Inclusive Memory Usage</th>
-                <th>Inclusive Peak Memory Usage</th>
+                <th>函数名</th>
+                <th>调用次数</th>
+                <th>独占执行耗时</th>
+                <th>独占CPU耗时</th>
+                <th>独占内存消耗</th>
+                <th>独占内存峰值</th>
+                <th>总执行耗时</th>
+                <th>总CPU耗时</th>
+                <th>总内存消耗</th>
+                <th>总内存峰值</th>
             </tr>
         </thead>
         <tbody>
@@ -38,7 +48,7 @@
                     {'id': id, 'symbol': current.function}
                 ) }}
                 <br>
-                Percent of total request
+                完整请求中的占比
             </td>
             <td>{{ current.ct }}</td>
             <td>{{ current.ewt|as_time }}</td>
@@ -58,17 +68,16 @@
     <table class="table table-hover table-sort">
         <thead>
             <tr>
-                <th>Function</th>
-                <th>Call Count</th>
-                <th>Self Wall Time</th>
-                <th>Self CPU</th>
-                <th>Self Memory Usage</th>
-                <th>Self Peak Memory Usage</th>
-
-                <th>Inclusive Wall Time</th>
-                <th>Inclusive CPU</th>
-                <th>Inclusive Memory Usage</th>
-                <th>Inclusive Peak Memory Usage</th>
+                <th>函数名</th>
+                <th>调用次数</th>
+                <th>独占执行耗时</th>
+                <th>独占CPU耗时</th>
+                <th>独占内存消耗</th>
+                <th>独占内存峰值</th>
+                <th>总执行耗时</th>
+                <th>总CPU耗时</th>
+                <th>总内存消耗</th>
+                <th>总内存峰值</th>
             </tr>
         </thead>
         <tbody>
@@ -103,13 +112,13 @@
     <table class="table table-hover table-sort">
         <thead>
             <tr>
-                <th>Function</th>
-                <th>Call Count</th>
+                <th>函数名</th>
+                <th>调用次数</th>
 
-                <th>Inclusive Wall Time</th>
-                <th>Inclusive CPU</th>
-                <th>Inclusive Memory Usage</th>
-                <th>Inclusive Peak Memory Usage</th>
+                <th>独占执行耗时</th>
+                <th>独占CPU耗时</th>
+                <th>独占内存消耗</th>
+                <th>独占内存峰值</th>
             </tr>
         </thead>
         <tbody>

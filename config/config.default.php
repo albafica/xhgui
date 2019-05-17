@@ -60,7 +60,12 @@ return array(
     //     },
     //
     'profiler.enable' => function() {
-        return rand(1, 100) === 42;
+        if(!empty($_GET['debug'])){
+            return true;
+        } else {
+            // 1%采样
+            return rand(1, 100) === 42;
+        }
     },
 
     // Transformation for the "simple" variant of the URL.
@@ -90,7 +95,8 @@ return array(
     //
     // Must be a format supported by the PHP date() function.
     // See <https://secure.php.net/date>.
-    'date.format' => 'M jS H:i:s',
+    //'date.format' => 'M jS H:i:s',
+    'date.format' => 'm/d H:i:s',
 
     // The number of items to show in "Top lists" with functions
     // using the most time or memory resources, on XHGui Run pages.

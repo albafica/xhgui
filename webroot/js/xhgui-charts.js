@@ -2,14 +2,14 @@ window.Xhgui = window.Xhgui || {};
 
 Xhgui.metricName = function (metric) {
     var map = {
-        pmu: "Peak Memory Use",
-        mu: "Memory Use",
-        cpu: "CPU time",
-        wt: "Wall time",
-        epmu: "Exclusive peak memory use",
-        emu: "Exclusive memory use",
-        ecpu: "Exclusive CPU",
-        ewt: "Exclusive wall time"
+        pmu: "内存峰值",
+        mu: "内存消耗",
+        cpu: "CPU执行时间",
+        wt: "执行时间",
+        epmu: "独占内存峰值(函数本身，不包括子函数)",
+        emu: "独占内存消耗(函数本身，不包括子函数)",
+        ecpu: "独占CPU耗时(函数本身，不包括子函数)",
+        ewt: "独占执行时间(函数本身，不包括子函数)"
     };
     if (!map[metric]) {
         return "Unknown";

@@ -30,7 +30,17 @@ class Xhgui_Twig_Extension extends Twig_Extension
         return array(
             'simple_url' => new Twig_Filter_Function('Xhgui_Util::simpleUrl'),
             'as_bytes' => new Twig_Filter_Method($this, 'formatBytes', array('is_safe' => array('html'))),
+            'as_kb' => new Twig_Filter_Method($this, 'formatKBytes', array('is_safe' => array('html'))),
+            'as_mb' => new Twig_Filter_Method($this, 'formatMBytes', array('is_safe' => array('html'))),
+            'as_title_bytes' => new Twig_Filter_Method($this, 'formatTitleBytes', array('is_safe' => array('html'))),
+            'as_title_kb' => new Twig_Filter_Method($this, 'formatTitleKBytes', array('is_safe' => array('html'))),
+            'as_title_mb' => new Twig_Filter_Method($this, 'formatTitleMBytes', array('is_safe' => array('html'))),
             'as_time' => new Twig_Filter_Method($this, 'formatTime', array('is_safe' => array('html'))),
+            'as_ms' => new Twig_Filter_Method($this, 'formatMillisecondTime', array('is_safe' => array('html'))),
+            'as_s' => new Twig_Filter_Method($this, 'formatSecondTime', array('is_safe' => array('html'))),
+            'as_title_time' => new Twig_Filter_Method($this, 'formatTitleTime', array('is_safe' => array('html'))),
+            'as_title_ms' => new Twig_Filter_Method($this, 'formatTitleMillisecondTime', array('is_safe' => array('html'))),
+            'as_title_s' => new Twig_Filter_Method($this, 'formatTitleSecondTime', array('is_safe' => array('html'))),
             'as_diff' => new Twig_Filter_Method($this, 'formatDiff', array('is_safe' => array('html'))),
             'as_percent' => new Twig_Filter_Method($this, 'formatPercent', array('is_safe' => array('html'))),
             'truncate' => new Twig_Filter_Method($this, 'truncate'),
@@ -93,9 +103,59 @@ class Xhgui_Twig_Extension extends Twig_Extension
         return number_format((float)$value) . '&nbsp;<span class="units">bytes</span>';
     }
 
+    public function formatKBytes($value)
+    {
+        return number_format((float)$value / 1024) . '&nbsp;<span class="units">KB</span>';
+    }
+
+    public function formatMBytes($value)
+    {
+        return number_format((float)$value / 1024 / 1024, 2) . '&nbsp;<span class="units">MB</span>';
+    }
+
+    public function formatTitleBytes($value)
+    {
+        return number_format((float)$value) . '&nbsp;bytes';
+    }
+
+    public function formatTitleKBytes($value)
+    {
+        return number_format((float)$value / 1024) . '&nbsp;KB';
+    }
+
+    public function formatTitleMBytes($value)
+    {
+        return number_format((float)$value / 1024 / 1024, 2) . '&nbsp; MB';
+    }
+
     public function formatTime($value)
     {
         return number_format((float)$value) . '&nbsp;<span class="units">µs</span>';
+    }
+
+    public function formatMillisecondTime($value)
+    {
+        return number_format((float)$value / 1000) . '&nbsp;<span class="units">ms</span>';
+    }
+
+    public function formatSecondTime($value)
+    {
+        return number_format((float)$value / 1000 / 1000, 3) . '&nbsp;<span class="units">s</span>';
+    }
+
+    public function formatTitleTime($value)
+    {
+        return number_format((float)$value) . '&nbsp;µs';
+    }
+
+    public function formatTitleMillisecondTime($value)
+    {
+        return number_format((float)$value / 1000) . '&nbsp;ms';
+    }
+
+    public function formatTitleSecondTime($value)
+    {
+        return number_format((float)$value / 1000 / 1000, 3) . '&nbsp;s';
     }
 
     public function formatDiff($value)
